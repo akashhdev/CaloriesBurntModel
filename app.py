@@ -61,15 +61,10 @@ if (selected == 'Calories Burnt Model'):
     
     # creating a button for Prediction
     
-    if st.button('Diabetes Test Result'):
+    if st.button('Predicted Calories Burnt'):
         calories_prediction = calories_model.predict([['Age','Height','Duration','Heart_Rate','Body_Temp','Calories']])
         
-        if (calories_prediction[0] == 1):
-          calories_diagnosis = 'The person is diabetic'
-        else:
-          calories_diagnosis = 'The person is not diabetic'
-        
-    st.success(calories_diagnosis)
+    st.success(calories_prediction)
 
 
 
