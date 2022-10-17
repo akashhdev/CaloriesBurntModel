@@ -45,14 +45,14 @@ if (selected == 'Calories Burnt Model'):
     
     
     # code for Prediction
-    calories_diagnosis = ''
+    calories_predicted = ''
     
     # creating a button for Prediction
     
     if st.button('Predicted Calories Burnt'):
-        calories_prediction = calories_model.predict([['Duration','Heart_Rate','Gender']])
+        calories_predicted = calories_model.predict([['Duration','Heart_Rate','Gender']])
         
-    st.success(calories_prediction)
+    st.success(calories_predicted)
 
 
 
