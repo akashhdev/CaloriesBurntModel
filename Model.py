@@ -11,7 +11,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import KFold
-
+import pickle
 
 # models -->
 from sklearn import linear_model
@@ -100,9 +100,10 @@ sns.heatmap(correlation, cbar=True, square=True, fmt='.1f', annot=True, annot_kw
 # --> calories and duration have the highest corelation (1.0)
 # --> so we might use them for corelation
 
+# dropping features with low correlation
 
 # Separating features and target (calories)
-X = calories_data.drop(columns=['User_ID','Calories'],axis=1)
+X = calories_data.drop(columns=['User_ID','Calories','Age','Height','Weight','Body_Temp'],axis=1)
 Y = calories_data['Calories']
 
 
@@ -197,6 +198,9 @@ print('Support Vector Regression: {:.2f}'.format(mae_svr))
 print('Gradient Boost Regression: {:.2f}'.format(mae_gbr))
 print('XGB Regression: {:.2f}'.format(mae_xgb))
 
+# save the model to disk
+filename = 'calories_model.sav'
+pickle.dump(plr, open(filename, 'wb'))
 
 
 
