@@ -38,10 +38,10 @@ if (selected == 'Calories Burnt Model'):
         Gender = st.text_input('Gender')
         
     with col2:
-        Age = st.text_input('Duration')
+        Duration = st.text_input('Duration')
     
     with col3:
-        Height = st.text_input('HeartRate')
+        Heart_Rate = st.text_input('HeartRate')
     
     
     # code for Prediction
