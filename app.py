@@ -38,22 +38,10 @@ if (selected == 'Calories Burnt Model'):
         Gender = st.text_input('Gender')
         
     with col2:
-        Age = st.text_input('Age')
+        Age = st.text_input('Duration')
     
     with col3:
-        Height = st.text_input('Height')
-    
-    with col1:
-        Weight = st.text_input('Weight')
-    
-    with col2:
-        Duration = st.text_input('Duration')
-    
-    with col3:
-        Heart_Rate = st.text_input('HeartRate')
-    
-    with col1:
-        Body_Temp = st.text_input('Body_Temp')
+        Height = st.text_input('HeartRate')
     
     
     # code for Prediction
@@ -62,7 +50,7 @@ if (selected == 'Calories Burnt Model'):
     # creating a button for Prediction
     
     if st.button('Predicted Calories Burnt'):
-        calories_prediction = calories_model.predict([['Age','Height','Duration','Heart_Rate','Body_Temp','Calories']])
+        calories_prediction = calories_model.predict([['Duration','Heart_Rate','Gender']])
         
     st.success(calories_prediction)
 
