@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun May  8 21:01:15 2022
-@author: siddhardhan
+Created on Mon Oct  17 21:01:15 2022
+@author: Akash
 """
 
 import pickle
@@ -26,38 +26,38 @@ with st.sidebar:
     
     
 # Diabetes Prediction Page
-if (selected == 'Diabetes Prediction'):
+if (selected == 'Calories Burnt Model'):
     
     # page title
-    st.title('Diabetes Prediction using ML')
+    st.title('Calories Burnt Prediction Model')
     
     # getting the input data from the user
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        Gender = st.text_input('Number of Pregnancies')
+        Gender = st.text_input('Gender')
         
     with col2:
-        Age = st.text_input('Glucose Level')
+        Age = st.text_input('Age')
     
     with col3:
-        Height = st.text_input('Blood Pressure value')
+        Height = st.text_input('Height')
     
     with col1:
-        Weight = st.text_input('Skin Thickness value')
+        Weight = st.text_input('Weight')
     
     with col2:
-        Duration = st.text_input('Insulin Level')
+        Duration = st.text_input('Duration')
     
     with col3:
-        Heart_Rate = st.text_input('BMI value')
+        Heart_Rate = st.text_input('HeartRate')
     
     with col1:
-        Body_Temp = st.text_input('Diabetes Pedigree Function value')
+        Body_Temp = st.text_input('Body_Temp')
     
     
     # code for Prediction
-    diab_diagnosis = ''
+    calories_diagnosis = ''
     
     # creating a button for Prediction
     
