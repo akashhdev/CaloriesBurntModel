@@ -44,11 +44,10 @@ if (selected == 'Calories Burnt Model'):
             
     with col2:
         Heart_Rate = st.number_input('HeartRate (BPM)')
-        Heart_Rate = int(Heart_Rate)
         
     with col3:
         Duration = st.number_input('Duration (Minutes)')
-        Duration = int(Duration)
+
     
 
     
@@ -58,7 +57,7 @@ if (selected == 'Calories Burnt Model'):
     # creating a button for Prediction
     
     if st.button('Predicted Calories Burnt'):
-        calories_predicted = calories_model.predict([['Duration','Heart_Rate','Gender']])
+        calories_predicted = calories_model.predict([[Duration,Heart_Rate,Gender]])
         
     st.success(calories_predicted)
 
