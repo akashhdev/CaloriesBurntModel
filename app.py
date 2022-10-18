@@ -44,10 +44,11 @@ if (selected == 'Calories Burnt Model'):
         
     with col2:
         Duration = st.number_input('Duration')
+        Duration = int(Duration)
     
     with col3:
         Heart_Rate = st.number_input('HeartRate')
-    
+        Heart_Rate = int(Heart_Rate)
     
     # code for Prediction
     calories_predicted = ''
