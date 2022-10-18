@@ -54,7 +54,7 @@ if (selected == 'Calories Burnt Model'):
     with col3:
         Duration = st.number_input('Target Duration (Minutes)')
 
-    body_temp = 37.5 + (heart_rate/180) + workout_factor[Exercise]
+    body_temp = 37.5 + (Heart_Rate/180) + workout_factor[Exercise]
 
     
     # code for Prediction
