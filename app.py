@@ -32,7 +32,7 @@ if (selected == 'Calories Burnt Model'):
     st.title('Calories Burnt Prediction Model')
     
     st.subheader('Hey there!, this is a machine learning model used for predicting calories burnt during a workout!')
-    st.caption('Enter some rough details of your workout and get the rough amount of calories you will burn!')
+    st.caption('Enter the details of your workout and get the rough amount of calories you will burn!')
     
     # getting the input data from the user
     col1, col2, col3 = st.columns(3)
@@ -72,6 +72,6 @@ if (selected == 'Calories Burnt Model'):
         
     st.success(calories_predicted)
     
-    st.subheader('Made with ❤ By Akash Raj Patel (quib.dev) \n Source: https://github.com/QuibDev/CaloriesBurntModel')
+    st.footer('Made with ❤ By Akash Raj Patel (quib.dev) \n Source: https://github.com/QuibDev/CaloriesBurntModel')
 
 
