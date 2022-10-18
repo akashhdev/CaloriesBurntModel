@@ -31,6 +31,8 @@ if (selected == 'Calories Burnt Model'):
     # page title
     st.title('Calories Burnt Prediction Model')
     
+    st.subheader('Enter some rough details of your workout and get the rough amount of calories you will burn!')
+    
     # getting the input data from the user
     col1, col2, col3 = st.columns(3)
     
@@ -68,6 +70,7 @@ if (selected == 'Calories Burnt Model'):
         calories_predicted = "You will burn around {} Calories by doing {} minutes of {}.".format(round(calories_model.predict([[Gender,Duration,Heart_Rate,Body_Temp]])[0],2), Duration, Exercise)
         
     st.success(calories_predicted)
-
+    
+    st.subheader('Made with ❤ By Akash Raj Patel (quib.dev) \n Source: https://github.com/QuibDev/CaloriesBurntModel')
 
 
