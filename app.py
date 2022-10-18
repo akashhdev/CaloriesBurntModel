@@ -43,7 +43,9 @@ if (selected == 'Calories Burnt Model'):
             Gender = 1
             
     with col2:
-        Heart_Rate = st.number_input('Target HeartRate (BPM)')
+        Heart_Range = {"90-110":100,"110-130":120,"130-150":140,"150-180":170}
+        Heart_Rate = st.selectbox('Target Heart Range',Heart_Range.keys())
+        Heart_Rate = Heart_Range[Heart_Rate]
         
     with col3: 
         workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.2,'Cycling':1.2,'Squats':1.0,'Push Ups':1.2,'Pull Ups':1.0
