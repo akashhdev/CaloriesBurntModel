@@ -43,12 +43,18 @@ if (selected == 'Calories Burnt Model'):
             Gender = 1
             
     with col2:
-        Heart_Rate = st.number_input('HeartRate (BPM)')
+        Heart_Rate = st.number_input('Target HeartRate (BPM)')
+        
+    with col3: 
+        workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.2,'Cycling':1.2,'Squats':1.0,'Push Ups':1.2,'Pull Ups'1.0
+                         ,'Arm Curls':0.5,'Lateral Raises':0.7, 'Shoulder Presses':0.8, 'Deadlifts':0.5,'BenchPresses':0.8}
+        
+        Exercise = st.selectbox('Workout',workout_factor.keys())
         
     with col3:
-        Duration = st.number_input('Duration (Minutes)')
+        Duration = st.number_input('Target Duration (Minutes)')
 
-    
+    body_temp = 37.5 + (heart_rate/180) + workout_factor[Exercise]
 
     
     # code for Prediction
@@ -57,7 +63,8 @@ if (selected == 'Calories Burnt Model'):
     # creating a button for Prediction
     
     if st.button('Predicted Calories Burnt'):
-        calories_predicted = "You will burn around {} Calories.".format(round(calories_model.predict([[Gender,Duration,Heart_Rate]]),2))
+        calories_predicted = "You will burn around {} Calories by doing {} minutes of {}."
+        .format(round(calories_model.predict([[Gender,Duration,Heart_Rate]]),2), Duration, Exercise)
         
     st.success(calories_predicted)
 
