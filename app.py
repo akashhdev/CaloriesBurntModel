@@ -72,6 +72,9 @@ if (selected == 'Calories Burnt Model'):
         
     st.success(calories_predicted)
     
-    st.caption('Made with ❤ By Akash Raj Patel (quib.dev) \n github: https://github.com/QuibDev/CaloriesBurntModel \n Database: https://www.kaggle.com/datasets/fmendes/fmendesdat263xdemos')
+    st.caption('Made with ❤ By Akash Raj Patel')
+    st.caption('Website: https://quib.dev')
+    st.caption('Github: https://github.com/QuibDev/CaloriesBurntModel')
+    st.caption('Database: https://www.kaggle.com/datasets/fmendes/fmendesdat263xdemos')
 
 
