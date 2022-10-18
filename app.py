@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Oct  17 21:01:15 2022
-@author: Akash
+@author: Akash Raj Patel
 """
 
 import pickle
@@ -72,6 +72,6 @@ if (selected == 'Calories Burnt Model'):
         
     st.success(calories_predicted)
     
-    st.footer('Made with ❤ By Akash Raj Patel (quib.dev) \n github: https://github.com/QuibDev/CaloriesBurntModel \n Database: https://www.kaggle.com/datasets/fmendes/fmendesdat263xdemos')
+    st.caption('Made with ❤ By Akash Raj Patel (quib.dev) \n github: https://github.com/QuibDev/CaloriesBurntModel \n Database: https://www.kaggle.com/datasets/fmendes/fmendesdat263xdemos')
 
 
