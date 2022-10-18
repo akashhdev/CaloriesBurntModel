@@ -57,7 +57,7 @@ if (selected == 'Calories Burnt Model'):
     # creating a button for Prediction
     
     if st.button('Predicted Calories Burnt'):
-        calories_predicted = calories_model.predict([[Duration,Heart_Rate,Gender]])
+        calories_predicted = calories_model.predict([[Gender,Duration,Heart_Rate]])
         
     st.success(calories_predicted)
 
