@@ -63,7 +63,7 @@ if (selected == 'Calories Burnt Model'):
     # creating a button for Prediction
     
     if st.button('Predicted Calories Burnt'):
-        calories_predicted = "You will burn around {%.2f} Calories by doing {} minutes of {}.".format(round(calories_model.predict([[Gender,Duration,Heart_Rate,Body_Temp]]),2), Duration, Exercise)
+        calories_predicted = "You will burn around {%.2f} Calories by doing {} minutes of {}.".format(calories_model.predict([[Gender,Duration,Heart_Rate,Body_Temp]]), Duration, Exercise)
         
     st.success(calories_predicted)
 
