@@ -38,9 +38,9 @@ if (selected == 'Calories Burnt Model'):
         Gender = st.selectbox('Select Your Gender',('Male','Female'))
         
         if (Gender == 'Male'):
-            Gender = 1
-        else:
             Gender = 0
+        else:
+            Gender = 1
         
     with col2:
         Duration = st.number_input('Duration')
