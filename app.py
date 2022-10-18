@@ -35,20 +35,22 @@ if (selected == 'Calories Burnt Model'):
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        Gender = st.selectbox('Select Your Gender',('Male','Female'))
+        Gender = st.selectbox('Gender',('Male','Female'))
         
         if (Gender == 'Male'):
             Gender = 0
         else:
             Gender = 1
-        
+            
     with col2:
+        Heart_Rate = st.number_input('HeartRate (BPM)')
+        Heart_Rate = int(Heart_Rate)
+        
+    with col3:
         Duration = st.number_input('Duration (Minutes)')
         Duration = int(Duration)
     
-    with col3:
-        Heart_Rate = st.number_input('HeartRate (BPM)')
-        Heart_Rate = int(Heart_Rate)
+
     
     # code for Prediction
     calories_predicted = ''
