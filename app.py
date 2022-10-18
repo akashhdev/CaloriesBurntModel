@@ -43,11 +43,11 @@ if (selected == 'Calories Burnt Model'):
             Gender = 1
         
     with col2:
-        Duration = st.number_input('Duration')
+        Duration = st.number_input('Duration (Minutes)')
         Duration = int(Duration)
     
     with col3:
-        Heart_Rate = st.number_input('HeartRate')
+        Heart_Rate = st.number_input('HeartRate (BPM)')
         Heart_Rate = int(Heart_Rate)
     
     # code for Prediction
