@@ -51,7 +51,7 @@ if (selected == 'Calories Burnt Model'):
         
         Exercise = st.selectbox('Workout',workout_factor.keys())
         
-    with col3:
+    with col1:
         Duration = st.number_input('Duration (Minutes)')
 
     body_temp = 37.5 + (Heart_Rate/180) + workout_factor[Exercise]
