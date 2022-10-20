@@ -63,7 +63,7 @@ if (selected == 'Workout Duration Model'):
 
     if (predictedDuration > 15.0):
 
-        predictedDurationAdv = predictedDuration-5.0
+        predictedDurationAdv = predictedDuration-(predictedDuration-10.0)
         predictedHeartRateAdv = round(HeartRange_model.predict([[Gender,Age,predictedDurationAdv,Calories]])[0],0)
 
     
