@@ -12,21 +12,66 @@ from streamlit_option_menu import option_menu
 # loading the saved models
 
 calories_model = pickle.load(open('calories_model.sav', 'rb'))
-
-
+HeartRange_model = pickle.load(open('HeartRange_model.sav', 'rb'))
+duration_model = pickle.load(open('duration_model','rb'))
 
 # sidebar for navigation
 with st.sidebar:
     
-    selected = option_menu('Calories Burnt Prediction Model',
+    selected = option_menu('Workout Planner Systems',
                           
-                          ['Calories Burnt Model'],
-                          icons=['activity'],
+                          ['Workout Duration Model','Calories Burnt Model'],
+                          icons=['time','activity'],
                           default_index=0)
     
+
+if (selected == 'Workout Duration Model'):
+
+    # page title
+    st.title('Workout Duration Prediction Model')
     
-# Diabetes Prediction Page
-if (selected == 'Calories Burnt Model'):
+    st.subheader('Hey there, this is a machine learning model for predicting the duration of a workout to burn entered calories!')
+    st.caption('Enter the details of your workout and calorie goal to get the rough duration and recommended heart rate range.')
+    
+    # getting the input data from the user
+    col1, col2, col3 = st.columns(3)
+
+    with col1: 
+        Gender = st.selectbox('Gender',('Male','Female'))
+        
+        if (Gender == 'Male'):
+            Gender = 0
+        else:
+            Gender = 1
+    
+    with col2:
+        Age = st.number_input('Age (Years)')
+            
+    with col3:
+        workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.2,'Cycling':1.2,'Squats':1.0,'Push Ups':1.2,'Pull Ups':1.0
+                         ,'Arm Curls':0.5,'Lateral Raises':0.7, 'Shoulder Presses':0.8, 'Deadlifts':0.5,'BenchPresses':0.8}
+        
+        Exercise = st.selectbox('Workout',workout_factor.keys())
+        
+    with col1: 
+        Calories = st.number_input('Goal Calories (Cal)')
+
+
+    predictedDuration = duration_model.predict([Gender,Age,Calories])
+
+    predictedHeartRate = HeartRange_model.predict([Gender,Age,predictedDuration,Calories])
+
+    Body_Temp = 37.5 + (predictedHeartRate/200-Age) + workout_factor[Exercise]
+
+    # creating a button for Prediction
+    
+    if st.button('Predict My Workout'):
+        result = "You should do {} for {} minutes at a recommended Heart Range of {} to burn your goal of {}.".format(round(Exercise,predictedDuration,predictedHeartRate,Calories))
+        
+    st.success(result)
+
+# Calories Prediction Page
+elif (selected == 'Calories Burnt Model'):
     
     # page title
     st.title('Calories Burnt Prediction Model')
@@ -51,7 +96,7 @@ if (selected == 'Calories Burnt Model'):
         Heart_Rate = Heart_Range[Heart_Rate]
         
     with col3: 
-        workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.2,'Cycling':1.2,'Squats':1.0,'Push Ups':1.2,'Pull Ups':1.0
+        workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.4,'Cycling':1.4,'Squats':1.2,'Push Ups':1.2,'Pull Ups':1.2
                          ,'Arm Curls':0.5,'Lateral Raises':0.7, 'Shoulder Presses':0.8, 'Deadlifts':0.5,'BenchPresses':0.8}
         
         Exercise = st.selectbox('Workout',workout_factor.keys())
@@ -71,10 +116,9 @@ if (selected == 'Calories Burnt Model'):
         calories_predicted = "You will burn around {} Calories by doing {} minutes of {}.".format(round(calories_model.predict([[Gender,Duration,Heart_Rate,Body_Temp]])[0],2), Duration, Exercise)
         
     st.success(calories_predicted)
-    
-    st.caption('Made with ❤ By Akash Raj Patel')
-    st.caption('Website: https://quib.dev')
-    st.caption('Github: https://github.com/QuibDev/CaloriesBurntModel')
-    st.caption('Database: https://www.kaggle.com/datasets/fmendes/fmendesdat263xdemos')
 
 
+st.caption('Made with ❤ By Akash Raj Patel')
+st.caption('Website: https://quib.dev')
+st.caption('Github: https://github.com/QuibDev/CaloriesBurntModel')
+st.caption('Database: https://www.kaggle.com/datasets/fmendes/fmendesdat263xdemos')
