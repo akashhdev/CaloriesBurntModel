@@ -57,9 +57,9 @@ if (selected == 'Workout Duration Model'):
         Calories = st.number_input('Goal Calories (Cal)')
 
 
-    predictedDuration = duration_model.predict([Gender,Age,Calories])
+    predictedDuration = duration_model.predict([[Gender,Age,Calories]])
 
-    predictedHeartRate = HeartRange_model.predict([Gender,Age,predictedDuration,Calories])
+    predictedHeartRate = HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]])
 
     Body_Temp = 37.5 + (predictedHeartRate/200-Age) + workout_factor[Exercise]
 
