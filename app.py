@@ -57,7 +57,7 @@ if (selected == 'Workout Duration Model'):
         Calories = st.number_input('Goal Calories (Cal)')
 
 
-    predictedDuration = duration_model.predict([[Gender,Age,Calories]])
+    predictedDuration = round(duration_model.predict([[Gender,Age,Calories]])[0],0)
 
     predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]])[0],0)
 
@@ -70,7 +70,7 @@ if (selected == 'Workout Duration Model'):
     result = 'Enter the details and press the predict button!'
     
     if st.button('Predict My Workout'):
-        result = "You should do {} for {} minutes at a recommended Heart Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
+        result = "You should do {} for {} minutes at a recommended HeartRate Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
         
     st.success(result)
 
