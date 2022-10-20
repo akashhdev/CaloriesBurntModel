@@ -21,7 +21,7 @@ with st.sidebar:
     selected = option_menu('Workout Planner Systems',
                           
                           ['Workout Duration Model','Calories Burnt Model'],
-                          icons=['activity','activity'],
+                          icons=['time','activity'],
                           default_index=0)
     
 
@@ -59,7 +59,7 @@ if (selected == 'Workout Duration Model'):
 
     predictedDuration = duration_model.predict([[Gender,Age,Calories]])
 
-    predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]]),0)
+    predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]])[0],0)
 
 
 
