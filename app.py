@@ -67,7 +67,7 @@ if (selected == 'Workout Duration Model'):
 
     # creating a button for Prediction
 
-    result = ''
+    result = 'Enter the details and press the predict button!'
     
     if st.button('Predict My Workout'):
         result = "You should do {} for {} minutes at a recommended Heart Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
@@ -112,7 +112,7 @@ elif (selected == 'Calories Burnt Model'):
 
     
     # code for Prediction
-    calories_predicted = ''
+    calories_predicted = 'Enter the details and press the predict button!'
     
     # creating a button for Prediction
     
