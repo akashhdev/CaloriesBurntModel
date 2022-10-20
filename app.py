@@ -30,7 +30,7 @@ if (selected == 'Workout Duration Model'):
     # page title
     st.title('Workout Duration Prediction Model')
     
-    st.subheader('Hey there, this is a machine learning model for predicting the duration of a workout to burn entered calories!')
+    st.subheader('Hey there, this is a machine learning model for predicting the duration of a workout to hit your calories goal!')
     st.caption('Enter the details of your workout and calorie goal to get the rough duration and recommended heart rate range.')
     
     # getting the input data from the user
