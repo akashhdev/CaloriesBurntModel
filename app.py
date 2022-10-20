@@ -13,7 +13,7 @@ from streamlit_option_menu import option_menu
 
 calories_model = pickle.load(open('calories_model.sav', 'rb'))
 HeartRange_model = pickle.load(open('HeartRange_model.sav', 'rb'))
-duration_model = pickle.load(open('duration_model','rb'))
+duration_model = pickle.load(open('duration_model.sav','rb'))
 
 # sidebar for navigation
 with st.sidebar:
