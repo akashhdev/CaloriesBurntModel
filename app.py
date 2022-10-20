@@ -21,7 +21,7 @@ with st.sidebar:
     selected = option_menu('Workout Planner Systems',
                           
                           ['Workout Duration Model','Calories Burnt Model'],
-                          icons=['time','activity'],
+                          icons=['heart','activity'],
                           default_index=0)
     
 
