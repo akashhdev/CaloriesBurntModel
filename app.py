@@ -58,20 +58,34 @@ if (selected == 'Workout Duration Model'):
 
 
     predictedDuration = round(duration_model.predict([[Gender,Age,Calories]])[0],0)
-
     predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]])[0],0)
 
 
+    if (predictedDuration > 15.0):
 
-    Body_Temp = 37.5 + (predictedHeartRate/200-Age) + workout_factor[Exercise]
+        predictedDurationAdv = predictedDuration-5.0
+        predictedHeartRateAdv = round(HeartRange_model.predict([[Gender,Age,predictedDurationAdv,Calories]])[0],0)
+
+    
 
     # creating a button for Prediction
 
     result = 'Enter the details and press the predict button!'
     
     if st.button('Predict Workout Duration'):
-        result = "You should do {} for {} minutes at a recommended HeartRate Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
+
+
+        if (predictedDuration < 15.0):
+            result = "\nYou can try {} for {} minutes at a recommended HeartRate Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
         
+        else:
+            recBase = "You can try the following to burn {} calories - ".format(Calories)
+            recNormal = "\n[Normal]{} for {} minutes at a recommended HeartRate Range of {} - {} BPM.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10)
+            recAdvanced = "\n[Advanced]{} for {} minutes at a recommended HeartRate Range of {} - {} BPM.".format(Exercise,predictedDurationAdv,predictedHeartRateAdv-10,predictedHeartRateAdv+10)
+            result = recBase+recNormal+recAdvanced
+
+
+
     st.success(result)
 
 # Calories Prediction Page
