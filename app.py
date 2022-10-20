@@ -21,7 +21,7 @@ with st.sidebar:
     selected = option_menu('Workout Planner Systems',
                           
                           ['Workout Duration Model','Calories Burnt Model'],
-                          icons=['time','activity'],
+                          icons=['activity','activity'],
                           default_index=0)
     
 
@@ -59,7 +59,9 @@ if (selected == 'Workout Duration Model'):
 
     predictedDuration = duration_model.predict([[Gender,Age,Calories]])
 
-    predictedHeartRate = HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]])
+    predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]]),0)
+
+
 
     Body_Temp = 37.5 + (predictedHeartRate/200-Age) + workout_factor[Exercise]
 
@@ -68,7 +70,7 @@ if (selected == 'Workout Duration Model'):
     result = ''
     
     if st.button('Predict My Workout'):
-        result = "You should do {} for {} minutes at a recommended Heart Range of {} to burn your goal of {}.".format(Exercise,predictedDuration,predictedHeartRate,Calories)
+        result = "You should do {} for {} minutes at a recommended Heart Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
         
     st.success(result)
 
