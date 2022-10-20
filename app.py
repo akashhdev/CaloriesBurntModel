@@ -69,7 +69,7 @@ if (selected == 'Workout Duration Model'):
 
     result = 'Enter the details and press the predict button!'
     
-    if st.button('Predict My Workout'):
+    if st.button('Predict Workout Duration'):
         result = "You should do {} for {} minutes at a recommended HeartRate Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
         
     st.success(result)
