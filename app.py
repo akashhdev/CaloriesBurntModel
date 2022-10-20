@@ -64,9 +64,11 @@ if (selected == 'Workout Duration Model'):
     Body_Temp = 37.5 + (predictedHeartRate/200-Age) + workout_factor[Exercise]
 
     # creating a button for Prediction
+
+    result = ''
     
     if st.button('Predict My Workout'):
-        result = "You should do {} for {} minutes at a recommended Heart Range of {} to burn your goal of {}.".format(round(Exercise,predictedDuration,predictedHeartRate,Calories))
+        result = "You should do {} for {} minutes at a recommended Heart Range of {} to burn your goal of {}.".format(Exercise,predictedDuration,predictedHeartRate,Calories)
         
     st.success(result)
 
