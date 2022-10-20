@@ -28,7 +28,7 @@ with st.sidebar:
 if (selected == 'Workout Duration Model'):
 
     # page title
-    st.title('Workout Duration Prediction Model')
+    st.title('Workout Duration Predictor')
     
     st.subheader('Hey there, this is a machine learning model for predicting the duration of a workout to hit your calories goal!')
     st.caption('Enter the details of your workout and calorie goal to get the rough duration and recommended heart rate range.')
@@ -78,7 +78,7 @@ if (selected == 'Workout Duration Model'):
 elif (selected == 'Calories Burnt Model'):
     
     # page title
-    st.title('Calories Burnt Prediction Model')
+    st.title('Calories Burnt Predictor')
     
     st.subheader('Hey there, this is a machine learning model used for predicting calories burnt during a workout!')
     st.caption('Enter the details of your workout and get the rough amount of calories you will burn!')
