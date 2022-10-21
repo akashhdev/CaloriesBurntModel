@@ -79,7 +79,7 @@ if (selected == 'Workout Duration Model'):
             workoutSet = math.floor(predictedDuration/5)
         
         if workoutSet > 0:
-            workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} BPM.".format(workoutSet,workout,floor(predictedDuration/workoutSet),predictedHeartRate)
+            workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} BPM.".format(workoutSet,workout,math.floor(predictedDuration/workoutSet),predictedHeartRate)
         else:
             workoutSummaryDict[workout] = "{} for {} minutes at a Heart Rate Range of {} BPM.".format(workout,predictedDuration,predictedHeartRate)  
 
