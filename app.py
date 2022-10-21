@@ -87,7 +87,9 @@ if (selected == 'Workout Model'):
 
         predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
-        predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,Body_Temp]])[0],2)
+        calculatedBodyTemp = 37.5 + (predictedHeartRate/205-Age) + workout_factor[Exercise]
+
+        predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
 
         if workoutSet > 0:
             workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} - {} BPM. - {} Calories".format(workoutSet,workout,math.floor(predictedDuration/workoutSet),predictedHeartRate-10,predictedHeartRate+10,predictedCalories)
