@@ -105,7 +105,8 @@ if (selected == 'Workout Model'):
         st.success("To burn your goal of {} calories you can try: ".format(Calories))
 
         for summary in workoutSummaryDict:
-            st.success(workoutSummaryDict[summary])
+            if workoutSummaryDict[summary]:
+                st.success(workoutSummaryDict[summary])
 
         if (summary):
             st.success("Take a rest of {} seconds between each set.".format(45))
