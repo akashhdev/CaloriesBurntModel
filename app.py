@@ -87,7 +87,7 @@ if (selected == 'Workout Model'):
 
         predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
-        calculatedBodyTemp = 37.5 + (predictedHeartRate/205-Age) + workout_factor[Exercise]
+        calculatedBodyTemp = 37.5 + (predictedHeartRate/205-Age) + workout_factor[workout]
 
         predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
 
