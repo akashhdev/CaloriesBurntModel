@@ -60,7 +60,9 @@ if (selected == 'Workout Duration Model'):
     with col1: 
         Calories = st.number_input('Goal Calories (Cal)')
 
-        calPerWorkout = Calories/len(Exercise)
+        calPerWorkout = Calories
+        if len(Exercise):
+            calPerWorkout = Calories/len(Exercise)
 
     
     # logic
