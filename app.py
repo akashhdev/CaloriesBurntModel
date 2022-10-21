@@ -98,10 +98,13 @@ if (selected == 'Workout Duration Model'):
     
     if st.button('Predict Workout Duration'):
 
+        st.success("To burn your goal of {} calories you can try: ".format(Calories))
+
         for summary in workoutSummaryDict:
             st.success(workoutSummaryDict[summary])
 
-        st.success("Take a rest of {} seconds between each set.".format(45))
+        if (summary):
+            st.success("Take a rest of {} seconds between each set.".format(45))
         
     else: 
         st.success('Enter the details and press the predict button!')
