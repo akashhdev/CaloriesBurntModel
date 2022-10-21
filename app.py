@@ -21,18 +21,18 @@ with st.sidebar:
     
     selected = option_menu('Workout Planner Systems',
                           
-                          ['Workout Duration Model','Calories Burnt Model'],
+                          ['Workout Model','Calories Burnt Model'],
                           icons=['heart','activity'],
                           default_index=0)
     
 
-if (selected == 'Workout Duration Model'):
+if (selected == 'Workout Model'):
 
     # page title
-    st.title('Workout Duration Predictor')
+    st.title('Workout Predictor')
     
-    st.subheader('Hey there, this is a machine learning model for predicting the duration of a workout to hit your calories goal!')
-    st.caption('Enter the details of your workout and calorie goal to get the rough duration and recommended heart rate range.')
+    st.subheader('Hey there, this is a machine learning model for predicting a workout to hit your calories goal!')
+    st.caption('Select your preferred workouts along with calorie goal and hit predict!')
     
     # getting the input data from the user
     col1, col2, col3 = st.columns(3)
@@ -53,7 +53,7 @@ if (selected == 'Workout Duration Model'):
     with col3:
 
         # higher corresponds to fewer and longer sets
-        workout_factor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.5,'Squats':1.2,'Push Ups':1.2,'Pull Ups':1.0
+        workout_factor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.5,'Squats':1.7,'Push Ups':1.5,'Pull Ups':1.0
                          ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'BenchPresses':1.0}
         
         Exercise = st.multiselect('Workout (5 max)',workout_factor.keys())
@@ -87,11 +87,12 @@ if (selected == 'Workout Duration Model'):
 
         predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
-        
+        predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,Body_Temp]])[0],2)
+
         if workoutSet > 0:
-            workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} - {} BPM.".format(workoutSet,workout,math.floor(predictedDuration/workoutSet),predictedHeartRate-10,predictedHeartRate+10)
+            workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} - {} BPM. - {} Calories".format(workoutSet,workout,math.floor(predictedDuration/workoutSet),predictedHeartRate-10,predictedHeartRate+10,predictedCalories)
         else:
-            workoutSummaryDict[workout] = "{} for {} minutes at a Heart Rate Range of {} - {} BPM.".format(workout,predictedDuration,predictedHeartRate-10,predictedHeartRate+10)  
+            workoutSummaryDict[workout] = "{} for {} minutes at a Heart Rate Range of {} - {} BPM. - {} Calories".format(workout,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,predictedCalories)  
 
 
     # creating a button for Prediction
