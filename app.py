@@ -51,12 +51,12 @@ if (selected == 'Workout Duration Model'):
 
             
     with col3:
-        workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.5,'Cycling':1.5,'Squats':1.2,'Push Ups':1.3,'Pull Ups':1.0
-                         ,'Arm Curls':0.6,'Lateral Raises':0.8, 'Shoulder Presses':1.0, 'Deadlifts':0.8,'BenchPresses':0.8}
+        workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.5,'Cycling':2.0,'Squats':1.2,'Push Ups':1.3,'Pull Ups':1.5
+                         ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'BenchPresses':1.0}
         
-        Exercise = st.multiselect('Workout (3 max)',workout_factor.keys())
+        Exercise = st.multiselect('Workout (5 max)',workout_factor.keys())
         
-        if len(Exercise) > 3:
+        if len(Exercise) > 5:
             st.error("You can only select 3 workouts max right now")
 
     with col1: 
