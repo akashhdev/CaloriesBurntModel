@@ -78,12 +78,15 @@ if (selected == 'Workout Duration Model'):
     for workout in Exercise:
 
         predictedDuration = round(duration_model.predict([[Gender,Age,calPerWorkout]])[0],0)
-        predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
         workoutSet = 0
         if (predictedDuration > 5):
             workoutSet = math.floor(predictedDuration/5)
             predictedDuration -= workout_factor[workout]*(predictedDuration/5)
+
+        predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
+
+        
         
         if workoutSet > 0:
             workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} - {} BPM.".format(workoutSet,workout,math.floor(predictedDuration/workoutSet),predictedHeartRate-10,predictedHeartRate+10)
