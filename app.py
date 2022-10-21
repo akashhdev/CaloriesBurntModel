@@ -46,7 +46,7 @@ if (selected == 'Workout Duration Model'):
             Gender = 1
     
     with col2:
-        possibleAgeList = [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+        possibleAgeList = [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
         Age = st.selectbox('Age (Years)',possibleAgeList)
 
             
