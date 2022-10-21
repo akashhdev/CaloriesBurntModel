@@ -92,11 +92,6 @@ if (selected == 'Workout Duration Model'):
             st.success(workoutSummaryDict[summary])
         
       
-
-
-
-    st.success(result)
-
 # Calories Prediction Page
 elif (selected == 'Calories Burnt Model'):
     
