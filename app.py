@@ -80,8 +80,8 @@ if (selected == 'Workout Duration Model'):
 
         workoutSet = 0
         if (predictedDuration > 5):
-            workoutSet = math.floor(predictedDuration/5)
             predictedDuration -= workout_factor[workout]*(predictedDuration/5)
+            workoutSet = math.floor(predictedDuration/5)
 
         predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
