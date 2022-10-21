@@ -46,10 +46,9 @@ if (selected == 'Workout Duration Model'):
             Gender = 1
     
     with col2:
-        Age = st.number_input('Age (Years)')
+        possibleAgeList = [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+        Age = st.selectbox('Age (Years)',possibleAgeList)
 
-        if Age < 0:
-            st.error("Dude no.")
             
     with col3:
         workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.5,'Cycling':1.5,'Squats':1.2,'Push Ups':1.3,'Pull Ups':1.0
