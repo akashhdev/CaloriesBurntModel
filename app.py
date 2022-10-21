@@ -79,20 +79,22 @@ if (selected == 'Workout Duration Model'):
             workoutSet = math.floor(predictedDuration/5)
         
         if workoutSet > 0:
-            workoutSummaryDict[workout] = "{} set of {} for {} minutes at a Heart Rate Range of {} BPM.".format(workoutSet,workout,predictedDuration,predictedHeartRate)
+            workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} BPM.".format(workoutSet,workout,floor(predictedDuration/workoutSet),predictedHeartRate)
         else:
             workoutSummaryDict[workout] = "{} for {} minutes at a Heart Rate Range of {} BPM.".format(workout,predictedDuration,predictedHeartRate)  
 
 
     # creating a button for Prediction
 
-    result = 'Enter the details and press the predict button!'
     
     if st.button('Predict Workout Duration'):
 
         for summary in workoutSummaryDict:
             st.success(workoutSummaryDict[summary])
         
+    else: 
+        st.success('Enter the details and press the predict button!')
+
       
 # Calories Prediction Page
 elif (selected == 'Calories Burnt Model'):
