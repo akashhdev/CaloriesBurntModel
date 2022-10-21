@@ -6,6 +6,7 @@ Created on Mon Oct  17 21:01:15 2022
 
 import pickle
 import streamlit as st
+import math
 from streamlit_option_menu import option_menu
 
 
@@ -51,22 +52,35 @@ if (selected == 'Workout Duration Model'):
         workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.5,'Cycling':1.5,'Squats':1.2,'Push Ups':1.3,'Pull Ups':1.0
                          ,'Arm Curls':0.6,'Lateral Raises':0.8, 'Shoulder Presses':1.0, 'Deadlifts':0.8,'BenchPresses':0.8}
         
-        Exercise = st.selectbox('Workout',workout_factor.keys())
+        Exercise = st.multiselect('Workout (3 max)',workout_factor.keys())
         
+        if len(Exercise) > 3:
+            st.error("You can only select 3 workouts max right now")
+
     with col1: 
         Calories = st.number_input('Goal Calories (Cal)')
 
-
-    predictedDuration = round(duration_model.predict([[Gender,Age,Calories]])[0],0)
-    predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,Calories]])[0],0)
-
-
-    if (predictedDuration > 15.0):
-
-        predictedDurationAdv = predictedDuration-(predictedDuration-10.0)
-        predictedHeartRateAdv = round(HeartRange_model.predict([[Gender,Age,predictedDurationAdv,Calories]])[0],0)
+        calPerWorkout = Calories/len(Exercise)
 
     
+    # logic
+
+    workoutSummaryDict = {1:"",2:"",3:""}
+
+    for workout in Exercise:
+
+        predictedDuration = round(duration_model.predict([[Gender,Age,calPerWorkout]])[0],0)
+        predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
+
+        workoutSet = 0
+        if (predictedDuration > 5): 
+            workoutSet = math.floor(predictedDuration/5)
+        
+        if workoutSet > 0:
+            workoutSummaryDict[workout] = "{} set of {} for {} minutes at a Heart Rate Range of {} BPM.".format(workoutSet,workout,predictedDuration,predictedHeartRate)
+        else:
+            workoutSummaryDict[workout] = "{} for {} minutes at a Heart Rate Range of {} BPM.".format(workout,predictedDuration,predictedHeartRate)  
+
 
     # creating a button for Prediction
 
@@ -74,15 +88,10 @@ if (selected == 'Workout Duration Model'):
     
     if st.button('Predict Workout Duration'):
 
-
-        if (predictedDuration < 15.0):
-            result = "\nYou can try {} for {} minutes at a recommended HeartRate Range of {} - {} BPM to burn your goal of {} calories.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10,Calories)
+        for summary in workoutSummaryDict:
+            st.success(workoutSummaryDict[summary])
         
-        else:
-            recBase = "You can try the following to burn {} calories - ".format(Calories)
-            recNormal = "\n[Normal]{} for {} minutes at a recommended HeartRate Range of {} - {} BPM.".format(Exercise,predictedDuration,predictedHeartRate-10,predictedHeartRate+10)
-            recAdvanced = "\n[Advanced]{} for {} minutes at a recommended HeartRate Range of {} - {} BPM.".format(Exercise,predictedDurationAdv,predictedHeartRateAdv-10,predictedHeartRateAdv+10)
-            result = recBase+recNormal+recAdvanced
+      
 
 
 
