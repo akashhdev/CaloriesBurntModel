@@ -47,6 +47,9 @@ if (selected == 'Workout Duration Model'):
     
     with col2:
         Age = st.number_input('Age (Years)')
+
+        if Age < 0:
+            st.error("Dude no.")
             
     with col3:
         workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.5,'Cycling':1.5,'Squats':1.2,'Push Ups':1.3,'Pull Ups':1.0
@@ -59,6 +62,9 @@ if (selected == 'Workout Duration Model'):
 
     with col1: 
         Calories = st.number_input('Goal Calories (Cal)')
+
+        if Calories < 0:
+            st.error("WE'RE HERE TO LOSE CALORIES MAN!")
 
         calPerWorkout = Calories
         if len(Exercise):
@@ -79,9 +85,9 @@ if (selected == 'Workout Duration Model'):
             workoutSet = math.floor(predictedDuration/5)
         
         if workoutSet > 0:
-            workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} BPM.".format(workoutSet,workout,math.floor(predictedDuration/workoutSet),predictedHeartRate)
+            workoutSummaryDict[workout] = "{} sets of {} for {} minutes each at a Heart Rate Range of {} - {} BPM.".format(workoutSet,workout,math.floor(predictedDuration/workoutSet),predictedHeartRate-10,predictedHeartRate+10)
         else:
-            workoutSummaryDict[workout] = "{} for {} minutes at a Heart Rate Range of {} BPM.".format(workout,predictedDuration,predictedHeartRate)  
+            workoutSummaryDict[workout] = "{} for {} minutes at a Heart Rate Range of {} - {} BPM.".format(workout,predictedDuration,predictedHeartRate-10,predictedHeartRate+10)  
 
 
     # creating a button for Prediction
