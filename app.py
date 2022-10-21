@@ -91,6 +91,8 @@ if (selected == 'Workout Duration Model'):
 
         for summary in workoutSummaryDict:
             st.success(workoutSummaryDict[summary])
+
+        st.success("Take a rest of {} seconds between each set.".format(45))
         
     else: 
         st.success('Enter the details and press the predict button!')
