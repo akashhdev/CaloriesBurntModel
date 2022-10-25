@@ -88,7 +88,12 @@ if (selected == 'Workout Model'):
 
     for workout in Exercise:
 
+        # higher results in higher duration [0 to 1]
+        durationFactor = {'Light Walking':1.0,'Jogging':0.6,'Running':0.3,'Cycling':0.3,'Squats':0.6,'Push Ups':0.6,'Pull Ups':0.6
+                         ,'Arm Curls':0.6,'Lateral Raises':0.6, 'Shoulder Presses':0.6, 'Deadlifts':0.6,'BenchPresses':0.6}
+        
         predictedDuration = round(duration_model.predict([[Gender,Age,calPerWorkout]])[0],0)
+        predictedDuration = predictedDuration*durationFactor[workout]
 
         workoutSet = 0
         if (predictedDuration > 5):
@@ -96,6 +101,8 @@ if (selected == 'Workout Model'):
             # break them into sets
             predictedDuration -= workoutFactor[workout]*(predictedDuration/5)
             workoutSet = math.floor((predictedDuration/5)*setFactor[workout])
+
+            
 
         predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
@@ -109,6 +116,7 @@ if (selected == 'Workout Model'):
             predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
             predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
 
+        # if predicted calories are higher 
         while predictedCalories > Calories/len(Exercise):
             predictedDuration -= 0.5
             predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
