@@ -105,7 +105,7 @@ if (selected == 'Workout Model'):
         while predictedCalories < Calories/len(Exercise):
             predictedDuration += 0.5
             predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
-
+            predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
 
 
         if workoutSet > 0:
