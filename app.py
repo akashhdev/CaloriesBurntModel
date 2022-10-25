@@ -93,7 +93,7 @@ if (selected == 'Workout Model'):
                          ,'Arm Curls':0.6,'Lateral Raises':0.6, 'Shoulder Presses':0.6, 'Deadlifts':0.6,'BenchPresses':0.6}
         
         predictedDuration = round(duration_model.predict([[Gender,Age,calPerWorkout]])[0],0)
-        predictedDuration = predictedDuration*durationFactor[workout]
+        #predictedDuration = predictedDuration*durationFactor[workout]
 
         workoutSet = 0
         if (predictedDuration > 5):
