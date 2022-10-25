@@ -56,12 +56,12 @@ if (selected == 'Workout Model'):
     with col2:
 
         # higher corresponds to fewer and longer sets
-        skinTempFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.0,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
-                         ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'BenchPresses':1.0}
+        skinTempFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
+                         ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'Bench Presses':1.0}
         
         # higher corresponds to fewer and longer sets
-        setFactor = {'Light Walking':0.1,'Jogging':0.25,'Running':0.5,'Cycling':0.25,'Squats':2.0,'Push Ups':2.0,'Pull Ups':2.0
-                         ,'Arm Curls':2.5,'Lateral Raises':2.0, 'Shoulder Presses':2.0, 'Deadlifts':2.0,'BenchPresses':2.0}
+        setFactor = {'Light Walking':0.1,'Jogging':0.25,'Running':0.5,'Squats':2.0,'Push Ups':2.0,'Pull Ups':2.0
+                         ,'Arm Curls':2.5,'Lateral Raises':2.0, 'Shoulder Presses':2.0, 'Deadlifts':2.0,'Bench Presses':2.0}
         
 
         Exercise = st.multiselect('Workout (5 max)',skinTempFactor.keys())
@@ -89,8 +89,8 @@ if (selected == 'Workout Model'):
     for workout in Exercise:
 
         # higher results in higher duration [0 to 1]
-        durationFactor = {'Light Walking':1.0,'Jogging':0.6,'Running':0.3,'Cycling':0.3,'Squats':0.6,'Push Ups':0.6,'Pull Ups':0.6
-                         ,'Arm Curls':0.6,'Lateral Raises':0.6, 'Shoulder Presses':0.6, 'Deadlifts':0.6,'BenchPresses':0.6}
+        durationFactor = {'Light Walking':1.0,'Jogging':0.6,'Running':0.3,'Squats':0.6,'Push Ups':0.6,'Pull Ups':0.6
+                         ,'Arm Curls':0.6,'Lateral Raises':0.6, 'Shoulder Presses':0.6, 'Deadlifts':0.6,'Bench Presses':0.6}
         
         predictedDuration = round(duration_model.predict([[Gender,Age,calPerWorkout]])[0],0)
         #predictedDuration = predictedDuration*durationFactor[workout]
@@ -174,7 +174,7 @@ elif (selected == 'Calories Burnt Model'):
         
     with col3: 
         workout_factor = {'Light Walking':0.4,'Jogging':0.7,'Running':1.4,'Cycling':1.4,'Squats':1.2,'Push Ups':1.2,'Pull Ups':1.2
-                         ,'Arm Curls':0.5,'Lateral Raises':0.7, 'Shoulder Presses':0.8, 'Deadlifts':0.5,'BenchPresses':0.8}
+                         ,'Arm Curls':0.5,'Lateral Raises':0.7, 'Shoulder Presses':0.8, 'Deadlifts':0.5,'Bench Presses':0.8}
         
         Exercise = st.selectbox('Workout',workout_factor.keys())
         
