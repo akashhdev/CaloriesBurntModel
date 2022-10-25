@@ -53,10 +53,15 @@ if (selected == 'Workout Model'):
     with col3:
 
         # higher corresponds to fewer and longer sets
-        workout_factor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.5,'Squats':1.7,'Push Ups':1.5,'Pull Ups':1.0
+        workoutFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.5,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
                          ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'BenchPresses':1.0}
         
-        Exercise = st.multiselect('Workout (5 max)',workout_factor.keys())
+        # higher corresponds to fewer and longer sets
+        setFactor = {'Light Walking':0.1,'Jogging':0.25,'Running':0.5,'Cycling':0.25,'Squats':2.0,'Push Ups':2.0,'Pull Ups':2.0
+                         ,'Arm Curls':2.5,'Lateral Raises':2.0, 'Shoulder Presses':2.0, 'Deadlifts':2.0,'BenchPresses':2.0}
+        
+
+        Exercise = st.multiselect('Workout (5 max)',workoutFactor.keys())
         
         if len(Exercise) > 5:
             st.error("You can only select 3 workouts max right now")
@@ -82,12 +87,12 @@ if (selected == 'Workout Model'):
 
         workoutSet = 0
         if (predictedDuration > 5):
-            predictedDuration -= workout_factor[workout]*(predictedDuration/5)
-            workoutSet = math.floor(predictedDuration/5)
+            predictedDuration -= workoutFactor[workout]*(predictedDuration/5)
+            workoutSet = math.floor((predictedDuration/5)*setFactor[workout])
 
         predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
-        calculatedBodyTemp = 37.5 + (predictedHeartRate/205-Age) + workout_factor[workout]
+        calculatedBodyTemp = 37.5 + (predictedHeartRate/205-Age) + workoutFactor[workout]
 
         predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
 
