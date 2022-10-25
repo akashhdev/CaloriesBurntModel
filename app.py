@@ -37,8 +37,8 @@ if (selected == 'Workout Model'):
     # getting the input data from the user
     col1, col2, col3 = st.columns(3)
 
-    with col1: 
-        Gender = 0
+    #with col1: 
+    #    Gender = 0
         #Gender = st.selectbox('Gender',('Male','Female'))
         
         #if (Gender == 'Male'):
@@ -48,12 +48,12 @@ if (selected == 'Workout Model'):
 
         
     
-    with col2:
+    with col1:
         possibleAgeList = [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
         Age = st.selectbox('Age (Years)',possibleAgeList)
 
             
-    with col3:
+    with col2:
 
         # higher corresponds to fewer and longer sets
         workoutFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.0,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
@@ -66,6 +66,7 @@ if (selected == 'Workout Model'):
 
         Exercise = st.multiselect('Workout (5 max)',workoutFactor.keys())
 
+    with col3:
         possibleCalList  = [100,200,300,400,500,600]
         Calories = st.selectbox('Goal Calories (Cal)',possibleCalList)
 
