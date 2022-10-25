@@ -78,7 +78,7 @@ if (selected == 'Workout Model'):
 
         for selectedCalorie in calorieWorkoutDict.keys():
             if selectedCalorie <= Calories:
-                if calorieWorkoutDict[selectedCalorie] > len(Exercise):
+                if calorieWorkoutDict[selectedCalorie] < len(Exercise):
                     st.error("Try increasing your calorie goal to add more workouts!")
 
     
