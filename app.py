@@ -56,7 +56,7 @@ if (selected == 'Workout Model'):
     with col2:
 
         # higher corresponds to fewer and longer sets
-        skinTempFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
+        skinTempFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.5,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
                          ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'Bench Presses':1.0}
         
         # higher corresponds to fewer and longer sets
@@ -74,12 +74,15 @@ if (selected == 'Workout Model'):
         if len(Exercise):
             calPerWorkout = Calories/len(Exercise)
 
-        calorieWorkoutDict = {100:2,200:3,300:4,400:5,500:5,600:5}
+        calorieWorkoutDict = {100:[0,2],200:[1,3],300:[2,4],400:[3,5],500:[3,5],600:[3,5]}
 
         for selectedCalorie in calorieWorkoutDict.keys():
             if selectedCalorie <= Calories:
-                if calorieWorkoutDict[selectedCalorie] < len(Exercise):
+                if calorieWorkoutDict[selectedCalorie][0] < len(Exercise):
                     st.error("Try increasing your calorie goal to add more workouts!")
+                elif len(Exercise) < calorieWorkoutDict[selectedCalorie][1]:
+                    st.error("Try decreasing your calorie goal to remove workouts!")
+
 
     
     # logic
@@ -94,6 +97,8 @@ if (selected == 'Workout Model'):
         
         predictedDuration = round(duration_model.predict([[Gender,Age,calPerWorkout]])[0],0)
         #predictedDuration = predictedDuration*durationFactor[workout]
+
+
 
         workoutSet = 0
         if (predictedDuration > 5):
