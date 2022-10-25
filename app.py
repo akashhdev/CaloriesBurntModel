@@ -92,6 +92,8 @@ if (selected == 'Workout Model'):
 
         workoutSet = 0
         if (predictedDuration > 5):
+
+            # break them into sets
             predictedDuration -= workoutFactor[workout]*(predictedDuration/5)
             workoutSet = math.floor((predictedDuration/5)*setFactor[workout])
 
@@ -104,6 +106,11 @@ if (selected == 'Workout Model'):
         # if predcited calories are lower 
         while predictedCalories < Calories/len(Exercise):
             predictedDuration += 0.5
+            predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
+            predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
+
+        while predictedCalories > Calories/len(Exercise):
+            predictedDuration -= 0.5
             predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
             predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
 
