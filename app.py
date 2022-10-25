@@ -46,12 +46,7 @@ if (selected == 'Workout Model'):
          #else:
         #    Gender = 1
 
-        possibleCalList  = [100,200,300,400,500,600]
-        Calories = st.selectbox('Goal Calories (Cal)',possibleCalList)
-
-        calPerWorkout = Calories
-        if len(Exercise):
-            calPerWorkout = Calories/len(Exercise)
+        
     
     with col2:
         possibleAgeList = [16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]
@@ -70,6 +65,13 @@ if (selected == 'Workout Model'):
         
 
         Exercise = st.multiselect('Workout (5 max)',workoutFactor.keys())
+
+        possibleCalList  = [100,200,300,400,500,600]
+        Calories = st.selectbox('Goal Calories (Cal)',possibleCalList)
+
+        calPerWorkout = Calories
+        if len(Exercise):
+            calPerWorkout = Calories/len(Exercise)
 
         calorieWorkoutDict = {100:2,200:3,300:4,400:5,500:5,600:5}
 
