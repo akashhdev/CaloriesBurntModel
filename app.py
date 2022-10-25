@@ -83,7 +83,7 @@ if (selected == 'Workout Model'):
 
     
     # logic
-
+    Gender = 0
     workoutSummaryDict = {1:"",2:"",3:""}
 
     for workout in Exercise:
