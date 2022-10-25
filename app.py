@@ -56,7 +56,7 @@ if (selected == 'Workout Model'):
     with col2:
 
         # higher corresponds to fewer and longer sets
-        skinTempFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.5,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
+        skinTempFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':3.0,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
                          ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'Bench Presses':1.0}
         
         # higher corresponds to fewer and longer sets
