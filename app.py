@@ -56,7 +56,7 @@ if (selected == 'Workout Model'):
     with col2:
 
         # higher corresponds to fewer and longer sets
-        workoutFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.0,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
+        skinTempFactor = {'Light Walking':0.4,'Jogging':1.5,'Running':2.0,'Cycling':2.0,'Squats':1.3,'Push Ups':1.5,'Pull Ups':1.0
                          ,'Arm Curls':0.8,'Lateral Raises':0.8, 'Shoulder Presses':1.3, 'Deadlifts':1.0,'BenchPresses':1.0}
         
         # higher corresponds to fewer and longer sets
@@ -64,7 +64,7 @@ if (selected == 'Workout Model'):
                          ,'Arm Curls':2.5,'Lateral Raises':2.0, 'Shoulder Presses':2.0, 'Deadlifts':2.0,'BenchPresses':2.0}
         
 
-        Exercise = st.multiselect('Workout (5 max)',workoutFactor.keys())
+        Exercise = st.multiselect('Workout (5 max)',skinTempFactor.keys())
 
     with col3:
         possibleCalList  = [100,200,300,400,500,600]
@@ -99,14 +99,14 @@ if (selected == 'Workout Model'):
         if (predictedDuration > 5):
 
             # break them into sets
-            predictedDuration -= workoutFactor[workout]*(predictedDuration/5)
+            predictedDuration -= skinTempFactor[workout]*(predictedDuration/5)
             workoutSet = math.floor((predictedDuration/5)*setFactor[workout])
 
             
 
         predictedHeartRate = round(HeartRange_model.predict([[Gender,Age,predictedDuration,calPerWorkout]])[0],0)
 
-        calculatedBodyTemp = 37.5 + (predictedHeartRate/205-Age) + workoutFactor[workout]
+        calculatedBodyTemp = 37.5 + (predictedHeartRate/205-Age) + skinTempFactor[workout]
 
         predictedCalories = round(calories_model.predict([[Gender,predictedDuration,predictedHeartRate,calculatedBodyTemp]])[0],2)
 
